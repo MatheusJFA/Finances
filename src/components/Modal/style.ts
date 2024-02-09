@@ -68,8 +68,14 @@ export const Content = styled(Dialog.Content)`
 
             transition: background-color 0.5s;
             
-            &:hover {
-                background-color: ${props => props.theme["primary-700"]};
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+            
+            &:not(:disabled):hover {
+                background: ${props => props.theme["primary-700"]};
+                transition: background-color 0.5s;
             }
         }
     }
@@ -86,7 +92,7 @@ interface TransactionsTypeButtonProps {
     variant: "income" | "outcome";
 }
 
-export const TransactionsTypeButton = styled(RadioGroup.Item)<TransactionsTypeButtonProps>`
+export const TransactionsTypeButton = styled(RadioGroup.Item) <TransactionsTypeButtonProps>`
     background-color: ${props => props.theme["gray-700"]};
     padding: 1rem;
 

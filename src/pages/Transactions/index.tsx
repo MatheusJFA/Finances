@@ -1,34 +1,34 @@
+import { useContext } from "react"
 import { Search } from "../../components/Search"
 import { PriceHighlight, TransactionsContainer, TransactionsTable } from "./style"
+import { TransactionsContext } from "../../contexts/transactionsContext"
+
+import { dateFormatter, priceFormatter } from "../../utils/formatter"
 
 export function Transactions() {
+
+    const { transactions } = useContext(TransactionsContext)
+
     return (
-        <TransactionsContainer>
-            <Search />
-            <TransactionsTable>
-                <tbody>
-                    <tr>
-                        <td width="50%">Desenvolvimento de site</td>
-                        <td>
-                            <PriceHighlight variant="income">
-                                R$ 12.000,00
-                            </PriceHighlight>
-                        </td>
-                        <td>Venda</td>
-                        <td>13/04/2022</td>
-                    </tr>
-                    <tr>
-                        <td width="50%">Hamburger</td>
-                        <td>
-                            <PriceHighlight variant="outcome">
-                                - R$ 59,00
-                            </PriceHighlight>
-                        </td>
-                        <td>Alimentação</td>
-                        <td>13/04/2022</td>
-                    </tr>
-                </tbody>
-            </TransactionsTable>
-        </TransactionsContainer>
+            <TransactionsContainer>
+                <Search />
+                <TransactionsTable>
+                    <tbody>
+                        {transactions.map(transaction => (
+                            <tr key={transaction.id}>
+                                <td width="50%">{transaction.title}</td>
+                                <td>
+                                    {transaction.type === "income" ? " + " : " - "}
+                                    <PriceHighlight variant={transaction.type}>
+                                        {priceFormatter.format(transaction.amount)}
+                                    </PriceHighlight>
+                                </td>
+                                <td>{transaction.category}</td>
+                                <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </TransactionsTable>
+            </TransactionsContainer>
     )
 }
