@@ -1,28 +1,36 @@
 {
-    "transactions": [
-        {
-            "id": 1,
-            "title": "Freelance de website de pomodoro",
-            "type": "income",
-            "category": "Dev",
-            "amount": 1000,
-            "createdAt": "2021-02-12 09:00:00"
-        },
-        {
-            "id": 2,
-            "title": "Freelance de website de finanças",
-            "type": "income",
-            "category": "Dev",
-            "amount": 6000,
-            "createdAt": "2021-02-12 09:00:00"
-        },
-        {
-            "id": 3,
-            "title": "Compra de cursos",
-            "type": "outcome",
-            "category": "Dev",
-            "amount": 2000,
-            "createdAt": "2021-02-12 09:00:00"
-        }
-    ]
+  "transactions": [
+    {
+      "id": "1",
+      "title": "Freelance de website de pomodoro",
+      "type": "income",
+      "category": "Dev",
+      "amount": 1000,
+      "createdAt": "2021-02-12 09:00:00"
+    },
+    {
+      "id": "2",
+      "title": "Freelance de website de finanças",
+      "type": "income",
+      "category": "Dev",
+      "amount": 6000,
+      "createdAt": "2021-02-12 09:00:00"
+    },
+    {
+      "id": "3",
+      "title": "Compra de cursos",
+      "type": "outcome",
+      "category": "Dev",
+      "amount": 2000,
+      "createdAt": "2021-02-12 09:00:00"
+    },
+    {
+      "id": "5cda",
+      "amount": 5000,
+      "title": "Desenvolvimento de App",
+      "type": "income",
+      "category": "Venda",
+      "createdAt": "2024-02-09T22:44:24.676Z"
+    }
+  ]
 }

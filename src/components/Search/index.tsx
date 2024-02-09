@@ -4,11 +4,15 @@ import { useForm } from "react-hook-form";
 
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { TransactionsContext } from "../../contexts/transactionsContext";
 
 export function Search() {
     const searchTransactionSchema = zod.object({
         query: zod.string()
     })
+
+    const { fetchTransactions } = useContext(TransactionsContext);
 
     const {
         register,
@@ -22,9 +26,7 @@ export function Search() {
 
 
     async function handleSearchTransactions(data: SearchFormInputs) {
-        fetch(`${import.meta.env.VITE_API_URL}/transactions?q=${data.query}`)
-            .then(response => response.json())
-            .then(data => console.log(data))
+        await fetchTransactions(data.query);
     }
 
     return (
