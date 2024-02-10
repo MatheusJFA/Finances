@@ -21,6 +21,7 @@ interface TransactionsContextType {
     transactions: Transaction[];
     fetchTransactions: (query?: string) => Promise<void>;
     createTransaction: (data: CreateTransactionProps) => Promise<void>;
+    deleteTransaction: (id: number) => Promise<void>;
 }
 
 export const TransactionsContext = createContext({} as TransactionsContextType);
@@ -56,6 +57,11 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         setTransactions(state => [response.data, ...state])
     }
 
+    async function deleteTransaction(id: number) {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/transactions/${id}`)
+        setTransactions(state => state.filter(transaction => transaction.id !== id))
+    }
+
     useEffect(() => {
         fetchTransactions();
     }, [])
@@ -65,7 +71,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         <TransactionsContext.Provider value={{
             transactions,
             fetchTransactions,
-            createTransaction
+            createTransaction,
+            deleteTransaction
         }}>
             {children}
         </TransactionsContext.Provider>
